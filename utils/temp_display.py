@@ -1,4 +1,4 @@
-class temperature_display:
+class TemperatureDisplay:
 
   def __init__(self, data):
     self.data = data

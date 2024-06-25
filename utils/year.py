@@ -1,4 +1,4 @@
-class year_with_min_avg_temp:
+class YearWithMinAvgTemp:
   def __init__(self, data):
     self.data = data
     self.min_avg_temp = 0

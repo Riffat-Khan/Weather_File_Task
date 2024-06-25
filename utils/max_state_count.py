@@ -1,4 +1,4 @@
-class max_state_occurance:
+class MaxStateOccurance:
   def __init__(self, data):
     self.data = data
     self.state_count = {}

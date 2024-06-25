@@ -11,5 +11,4 @@ def read_result_file(file_path):
   with open(file_path, mode='r') as resultFile:
     resultFile = csv.DictReader(resultFile)
     resultFileData = list(resultFile)
-    for eachRow in resultFileData:
-      return eachRow
+    return resultFileData[-1]

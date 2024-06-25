@@ -1,4 +1,4 @@
-class day_max_temp:
+class DayMaxTemp:
   def __init__(self, data):
     self.data = data
     self.max_avg_temp = 0

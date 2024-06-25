@@ -1,43 +1,38 @@
 import argparse
 
-class arg_parser:
-
-  def __init__(self):
-    self.parser = argparse.ArgumentParser(description="A csv file!")
-    self.__addArguments()
+class CustomArgumentParser(argparse.ArgumentParser):
+  def __init__(self, *args, **kwargs):
+    
+    super().__init__(*args, **kwargs)
   
-  def __addArguments(self):
-    self.parser.add_argument(
+    self.add_argument(
       '-f', '--file',
       type=str,
       help='Path to csv file'
     )
-    self.parser.add_argument(
-      '-c', '--city',
+    self.add_argument(
+      '--city',
       type=str,
       help='city station '
     )
-    self.parser.add_argument(
-      '-fr', '--dateFrom',
+    self.add_argument(
+      '--start',
       type=str,
       help='range start'
     )
-    self.parser.add_argument(
-      '-end', '--dateTo',
+    self.add_argument(
+      '--end',
       type=str,
       help='range till'
     )
-    self.parser.add_argument(
-      '-m', '--maxmin',
+    self.add_argument(
+      '--maxminavg',
       type=str,
       help='the value i.e max/min '
     )
-    self.parser.add_argument(
-      '-t', '--tempwind',
+    self.add_argument(
+      '--col',
       type=str,
       help='what to find '
     )
     
-
-  def parse_args(self):
-    return self.parser.parse_args()

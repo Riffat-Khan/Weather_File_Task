@@ -1,4 +1,4 @@
-class state_data:
+class StateData:
   def __init__(self, data):
     self.data = data
     self.max_temp = 0

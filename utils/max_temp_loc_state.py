@@ -1,9 +1,9 @@
-class max_temp_loc_state:
+class MaxTempLocState:
   def __init__(self, data):
     self.data = data
     self.max_temp_max_col = 0
 
-  def location_state_sisplay(self):
+  def location_state_display(self):
     for each_array in self.data:
       each_max_temp = int(each_array.get('Data.Temperature.Max Temp'))
       if each_max_temp > self.max_temp_max_col:
