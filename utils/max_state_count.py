@@ -1,11 +1,11 @@
-class MaxStateOccurance:
+class max_state_occurance:
   def __init__(self, data):
     self.data = data
     self.state_count = {}
 
-  def MaxStateOccur(self):
-    for each in self.data:
-      state = each.get('Station.State')
+  def max_state_occur(self):
+    for each_array in self.data:
+      state = each_array.get('Station.State')
       if state in self.state_count:
         self.state_count[state] += 1
       else:

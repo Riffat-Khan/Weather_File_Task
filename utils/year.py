@@ -1,14 +1,14 @@
-class year:
+class year_with_min_avg_temp:
   def __init__(self, data):
     self.data = data
-    self.minAvgTemp = 0
+    self.min_avg_temp = 0
     
-  def YearAvgTempMin(self):
-    for each in self.data:
-      eachAvgTemp = int(each.get('Data.Temperature.Avg Temp'))
-      if self.minAvgTemp > eachAvgTemp:
-        self.minAvgTemp = eachAvgTemp
-        year = each.get('Date.Year')
+  def min_avg_temp_year(self):
+    for each_array in self.data:
+      each_avg_temp = int(each_array.get('Data.Temperature.Avg Temp'))
+      if each_avg_temp > self.min_avg_temp:
+        self.min_avg_temp = each_avg_temp
+        year = each_array.get('Date.Year')
         
-    return year, self.minAvgTemp
+    return year, self.min_avg_temp
     

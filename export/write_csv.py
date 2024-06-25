@@ -2,7 +2,7 @@ import csv
 
 def export_to_csv(file_path, resDict):
   fieldnames = resDict.keys()
-  with open(file_path, mode='w') as avgDataFile:
+  with open(file_path, mode='a') as avgDataFile:
     writing = csv.DictWriter(avgDataFile, fieldnames)
     writing.writeheader()
     writing.writerow(resDict)

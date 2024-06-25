@@ -1,14 +1,14 @@
-class day:
+class day_max_temp:
   def __init__(self, data):
     self.data = data
-    self.maxAvgTemp = 0
+    self.max_avg_temp = 0
     
-  def dayAvgTempMax(self):
-    for each in self.data:
-      eachAvgTemp = int(each.get('Data.Temperature.Avg Temp'))
-      if eachAvgTemp > self.maxAvgTemp:
-        self.maxAvgTemp = eachAvgTemp
-        day = each.get('Date.Week of')
+  def day_avg_temp_max(self):
+    for each_array in self.data:
+      each_avg_temp = int(each_array.get('Data.Temperature.Avg Temp'))
+      if each_avg_temp > self.max_avg_temp:
+        self.max_avg_temp = each_avg_temp
+        day = each_array.get('Date.Week of')
         
-    return day, self.maxAvgTemp
+    return day, self.max_avg_temp
     
