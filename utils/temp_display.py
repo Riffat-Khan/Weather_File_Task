@@ -33,9 +33,9 @@ class TemperatureDisplay:
   
   def avg_wind_speed(self):
     for record in self.data:
-      eachWindSpeed = float(record.get('Data.Wind.Speed'))
-      self.sum_wind_speed += eachWindSpeed
+      each_wind_speed = float(record.get('Data.Wind.Speed'))
+      self.sum_wind_speed += each_wind_speed
 
-    avgWindSpeed = self.sum_wind_speed/len(self.data)
-    return round(avgWindSpeed, 2)
+    avg_wind_speed = self.sum_wind_speed/len(self.data)
+    return round(avg_wind_speed, 2)
    

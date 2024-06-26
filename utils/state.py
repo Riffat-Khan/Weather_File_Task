@@ -16,7 +16,7 @@ class StateData:
         code = record.get('Station.Code')
         state = record.get('Station.State')
         
-    return self.max_temp, city, location, code, state
+    return city, location, code, state
         
   def state_max_wind_speed(self):
     for record in self.data:
@@ -28,7 +28,7 @@ class StateData:
         code = record.get('Station.Code')
         state = record.get('Station.State')
  
-    return self.max_wind_speed, city, location, code, state
+    return city, location, code, state
   
   def state_min_temp(self):
     for record in self.data:
@@ -40,7 +40,7 @@ class StateData:
         code = record.get('Station.Code')
         state = record.get('Station.State')
  
-    return self.min_temp, city, location, code, state
+    return city, location, code, state
   
   def state_min_wind_speed(self):
     for record in self.data:
@@ -52,7 +52,7 @@ class StateData:
         code = record.get('Station.Code')
         state = record.get('Station.State')
  
-    return self.min_wind_speed, city, location, code, state
+    return city, location, code, state
   
 
 # Find the state with maximum temperature, maximum wind speed, minimum temperature and minimum speed. Export there city, location, code, state
