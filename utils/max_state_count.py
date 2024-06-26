@@ -4,8 +4,8 @@ class MaxStateOccurance:
     self.state_count = {}
 
   def max_state_occur(self):
-    for each_array in self.data:
-      state = each_array.get('Station.State')
+    for record in self.data:
+      state = record.get('Station.State')
       if state in self.state_count:
         self.state_count[state] += 1
       else:

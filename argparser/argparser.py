@@ -6,7 +6,7 @@ class CustomArgumentParser(argparse.ArgumentParser):
     super().__init__(*args, **kwargs)
   
     self.add_argument(
-      '-f', '--file',
+      '--file',
       type=str,
       help='Path to csv file'
     )
@@ -26,7 +26,7 @@ class CustomArgumentParser(argparse.ArgumentParser):
       help='range till'
     )
     self.add_argument(
-      '--maxminavg',
+      '--stats',
       type=str,
       help='the value i.e max/min '
     )
