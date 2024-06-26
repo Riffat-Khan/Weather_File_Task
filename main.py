@@ -10,21 +10,21 @@ from utils.year import YearWithMinAvgTemp
 from utils.day import DayMaxTemp
 from export.write_csv import export_to_csv, read_result_file
 
-def read_csv_file(file_path):
-  with open(file_path, mode='r') as csvFile:
+def read_csv_file(file):
+  with open(file, mode='r') as csvFile:
     file = csv.DictReader(csvFile)
     data = list(file)
     return data
   
-def valid_args(file_path, start, end):
-  data = read_csv_file(file_path)
+def valid_args(file, start, end):
+  data = read_csv_file(file)
   st_range = datetime.strptime(start if start else data[0].get('Date.Full'), '%Y-%m-%d')
   end_range = datetime.strptime(end if end else data[-1].get('Date.Full'), '%Y-%m-%d')
   return st_range, end_range
 
-def date_based_filtering(file_path, start, end):
-  data = read_csv_file(file_path)
-  st_range, end_range = valid_args(file_path, start, end)
+def date_based_filtering(file, start, end):
+  data = read_csv_file(file)
+  st_range, end_range = valid_args(file, start, end)
   date_based = []
   for record in data:
     date = record.get('Date.Full')          
@@ -34,8 +34,8 @@ def date_based_filtering(file_path, start, end):
     
   return date_based if date_based else data
 
-def city_based_filtering(file_path, start, end, city):
-  date_based = date_based_filtering(file_path, start, end)
+def city_based_filtering(file, start, end, city):
+  date_based = date_based_filtering(file, start, end)
   if city:
     city_based =  [record for record in date_based if record.get('Station.City') == city]
     return city_based
@@ -45,15 +45,14 @@ def city_based_filtering(file_path, start, end, city):
 def avg_values(final_data, column):
   dict_data = {}
   if final_data: 
-    if column:
-      if column == 'maxT':
-        dict_data['Average.Temperature Max'] = TemperatureDisplay(final_data).avg_max_temp()
-      if column == 'minT':
-        dict_data['Average.Temperature Min'] = TemperatureDisplay(final_data).avg_min_temp()
-      if column == 'wd':
-        dict_data['Average.Wind.Direction'] = TemperatureDisplay(final_data).avg_wind_direction()
-      if column == 'ws':
-        dict_data['Average.Wind.Speed'] = TemperatureDisplay(final_data).avg_wind_speed()
+    if column == 'maxT':
+      dict_data['Average.Temperature Max'] = TemperatureDisplay(final_data).avg_max_temp()
+    if column == 'minT':
+      dict_data['Average.Temperature Min'] = TemperatureDisplay(final_data).avg_min_temp()
+    if column == 'wd':
+      dict_data['Average.Wind.Direction'] = TemperatureDisplay(final_data).avg_wind_direction()
+    if column == 'ws':
+      dict_data['Average.Wind.Speed'] = TemperatureDisplay(final_data).avg_wind_speed()
           
   return dict_data
 
@@ -116,8 +115,8 @@ def min_values(final_data, column):
     return dict_data
   return None
 
-def processing_stats(file_path, start, end, city, stats, column):
-  final_data = city_based_filtering(file_path, start, end, city)
+def processing_stats(file, start, end, city, stats, column):
+  final_data = city_based_filtering(file, start, end, city)
   if not final_data:
     return 'The filtered data based on your arguments is empty'
   else:
@@ -128,9 +127,9 @@ def processing_stats(file_path, start, end, city, stats, column):
     if stats == 'min':
       return min_values(final_data, column)
     
-def applying_args(file_path, start, end, city, stats, column):
+def applying_args(file, start, end, city, stats, column):
   if stats and column:
-    return processing_stats(file_path, start, end, city, stats, column)
+    return processing_stats(file, start, end, city, stats, column)
   else:
     return '--stats and --col args are required'
   
@@ -139,16 +138,16 @@ def main():
   parser = CustomArgumentParser()  
   args = parser.parse_args()
 
-  file_path = args.file
+  file = args.file
   start = args.start
   end = args.end
   city = args.city
   stats = args.stats
   column = args.col
  
-  print(applying_args(file_path, start, end, city, stats, column))
+  print(applying_args(file, start, end, city, stats, column))
 
-  result = (applying_args(file_path, start, end, city, stats, column))
+  result = (applying_args(file, start, end, city, stats, column))
   
   if result and  type(result) is dict:
     export_to_csv('res_file.csv', result)
